@@ -1,2 +1,2 @@
-mysql_old_root_password: 
+mysql_user: root
 mysql_root_password: qwerty
