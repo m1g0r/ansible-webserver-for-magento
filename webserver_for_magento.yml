@@ -2,7 +2,7 @@
 ---
 - name: Install WebServer for Magento 
   hosts: all
-  sudo: True
+  sudo: true
 
 - name: Install nginx, PerconaDB PHP-FPM, Varnish, memcached
   hosts: web
