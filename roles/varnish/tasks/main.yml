@@ -2,12 +2,20 @@
 
 - name: Install Varnish
   apt: name=varnish state=present
+  become: true
+  become_method: sudo
   
 - name: Copy varnish configuration
   template: src=varnish dest=/etc/default/varnish
+  become: true
+  become_method: sudo
 
 - name: Copy varnish vcl configuration
   template: src=default.vcl dest=/etc/varnish/default.vcl
+  become: true
+  become_method: sudo
 
 - name: Start varnish
-  service: name=varnish state=started enabled=yes
+  service: name=varnish state=restarted enabled=yes
+  become: true
+  become_method: sudo

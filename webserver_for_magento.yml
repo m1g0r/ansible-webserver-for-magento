@@ -4,7 +4,7 @@
   hosts: all
   sudo: true
 
-- name: Install nginx, PerconaDB PHP-FPM, Varnish, memcached
+- name: Install nginx, PerconaDB PHP-FPM, Varnish, memcached, util
   hosts: web
 
   roles:
@@ -13,3 +13,4 @@
     - php-fpm
     - varnish
     - memcache
+    - util

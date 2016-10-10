@@ -8,13 +8,21 @@
     - php5-mysql
     - php5-curl
     - php5-mcrypt
-    - vim
+
+  become: true
+  become_method: sudo
 
 - name: Configure PHP-FPM
   command: rm -f /etc/php5/fpm/pool.d/www.conf
+  become: true
+  become_method: sudo
 
 - name: Add the magento template
   template: src=magento.conf dest=/etc/php5/fpm/pool.d/magento.conf
+  become: true
+  become_method: sudo
 
 - name: Restart FPM
   service: name=php5-fpm state=restarted       
+  become: true
+  become_method: sudo

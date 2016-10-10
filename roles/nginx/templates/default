@@ -4,12 +4,11 @@ map $http_host $magesite {
 }
 
 server {
-  listen 8080
-  ;
+  listen 8080;
   access_log  /var/log/nginx/access.log;
 
   server_name  {{ server_hostname }};
-  root /var/www/{{ server_hostname }};
+  root {{ wwwroot }};
   autoindex off;
 
   # protection (we have no .htaccess)

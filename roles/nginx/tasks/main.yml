@@ -1,15 +1,30 @@
 
 - name: Install Nginx
   apt: name=nginx state=present update_cache=yes
+  become: true
+  become_method: sudo
 
 - name: Remove the default Nginx template
   command: rm -f /etc/nginx/sites-enabled/default
+  become: true
+  become_method: sudo
 
 - name: Copy vhost configuration
   template: src=default dest=/etc/nginx/sites-available/{{ server_hostname }}
+  become: true
+  become_method: sudo
+
+- name: Copy php info file to root
+  template: src=index.php dest={{ wwwroot }}
+  become: true
+  become_method: sudo
 
 - name: Enable the new vhost
   file: src=/etc/nginx/sites-available/{{ server_hostname }} dest=/etc/nginx/sites-enabled/{{ server_hostname }} state=link
-
+  become: true
+  become_method: sudo
+  
 - name: Start nginx
   service: name=nginx state=restarted
+  become: true
+  become_method: sudo

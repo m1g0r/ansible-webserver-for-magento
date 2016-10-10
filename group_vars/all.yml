@@ -1,2 +1,9 @@
+wwwroot: /usr/share/nginx/html
+item: 192.168.35.26
 mysql_user: root
 mysql_root_password: qwerty
+
+server_hostname: default
+
+#PHP-FPM sockets or TCP
+php_listen: /var/run/php5-fpm.sock
