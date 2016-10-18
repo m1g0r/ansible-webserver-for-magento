@@ -14,6 +14,21 @@
   become: true
   become_method: sudo
 
+- name: Creates SSL directory on /etc/nginx
+  file: path=/etc/nginx/ssl state=directory
+  become: true
+  become_method: sudo
+
+- name: Copy SSL certificate
+  template: src=nginx.crt dest=/etc/nginx/ssl/nginx.crt
+  become: true
+  become_method: sudo
+
+- name: Copy SSL key
+  template: src=nginx.key dest=/etc/nginx/ssl/nginx.key
+  become: true
+  become_method: sudo  
+
 - name: Copy php info file to root
   template: src=index.php dest={{ wwwroot }}
   become: true
