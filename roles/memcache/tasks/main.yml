@@ -1,4 +1,12 @@
-- include: memcache_deb.yml
-  when: ansible_os_family == "Debian"
-- include: memcache_rpm.yml
-  when: ansible_os_family == "RedHat"
+---
+- name: Install memcached 
+  apt: name={{ item }} state=present
+  with_items:
+    - memcached
+  become: true
+  become_method: sudo
+
+- name: Start memcached
+  service: name=memcached state=started enabled=yes
+  become: true
+  become_method: sudo
